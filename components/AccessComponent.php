@@ -292,10 +292,12 @@ class AccessComponent extends \yii\base\Component
 			'DashboardSearch',
 		];
 
-		if (! App::identity('isDeveloper')) {
-			$ignore[] = 'UserMetaSearch';
-			$ignore[] = 'ThemeSearch';
-			$ignore[] = 'QueueSearch';
+		if (App::isLogin()) {
+			if (! App::identity('isDeveloper')) {
+				$ignore[] = 'UserMetaSearch';
+				$ignore[] = 'ThemeSearch';
+				$ignore[] = 'QueueSearch';
+			}
 		}
 
 		$data = [];
