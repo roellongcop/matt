@@ -21,11 +21,11 @@ class SignUpForm extends \yii\base\Model
     public function rules()
     {
         return [
-            [['email', 'password', 'name', 'country_id', 'state_id'], 'required'],
+            [['email', 'password', 'name', 'country_id'], 'required'],
             [['email', 'password', 'name'], 'string', 'max' => 225],
             [['country_id', 'state_id'], 'integer'],
             ['country_id', 'exist', 'targetClass' => 'app\models\Country', 'targetAttribute' => 'id'],
-            ['state_id', 'exist', 'targetClass' => 'app\models\State', 'targetAttribute' => 'id'],
+            ['state_id', 'exist', 'targetClass' => 'app\models\State', 'targetAttribute' => 'id', 'when' => fn($model) => $model->state_id],
             [['email', 'password'], 'trim'],
             ['email', 'email'],
              ['email', 'unique', 'targetClass' => 'app\models\User', 'message' => 'This email address has already been taken.'],
