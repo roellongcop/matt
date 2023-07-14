@@ -9,9 +9,10 @@ use app\models\User;
 use app\models\form\ContactForm;
 use app\models\form\LoginForm;
 use app\models\form\PasswordResetForm;
+use app\models\form\SetNewPasswordForm;
 use app\models\form\SignUpForm;
-use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
+use yii\web\NotFoundHttpException;
 
 class SiteController extends Controller
 {
@@ -20,7 +21,7 @@ class SiteController extends Controller
         $behaviors = parent::behaviors();
         $behaviors['AccessControl'] = [
             'class' => 'app\filters\AccessControl',
-            'publicActions' => ['login', 'reset-password', 'contact', 'signup', 'states', 'email-verification', 'signup-success', 'resend-email-verification']
+            'publicActions' => ['login', 'reset-password', 'contact', 'signup', 'states', 'email-verification', 'signup-success', 'resend-email-verification', 'set-new-password']
         ];
         $behaviors['VerbFilter'] = [
             'class' => 'app\filters\VerbFilter',
@@ -35,6 +36,7 @@ class SiteController extends Controller
     public function beforeAction($action)
     {
         switch ($action->id) {
+            case 'set-new-password':
             case 'signup-success':
             case 'signup':
             case 'login':
@@ -263,6 +265,31 @@ class SiteController extends Controller
         
         }
 
+        throw new NotFoundHttpException('User not found.');
+    }
+
+    public function actionSetNewPassword($prt='')
+    {
+        if (($user = User::findOne(['password_reset_token' => $prt])) != null) {
+            $model = new SetNewPasswordForm(['prt' => $user->password_reset_token]);
+
+            if ($model->load(App::post())) {
+
+                if ($model->setNewPassword()) {
+                    App::success('Password changed successfully!');
+                    return $this->redirect(['login']);
+                }
+                else {
+                    App::danger($model->errors);
+                }
+
+            }
+            
+            return $this->render('set-new-password', [
+                'model' => $model,
+            ]);
+
+        }
         throw new NotFoundHttpException('User not found.');
     }
 }

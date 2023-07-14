@@ -17,7 +17,7 @@ class LoginForm extends \yii\base\Model
     public $password;
     public $rememberMe = true;
 
-    private $_user = false;
+    private $_user;
 
     /**
      * @return array the validation rules.
@@ -88,7 +88,7 @@ class LoginForm extends \yii\base\Model
      */
     public function getUser()
     {
-        if ($this->_user === false) {
+        if ($this->_user === null) {
             $this->_user = User::find()
                 ->where(['email' => $this->username])
                 ->orWhere(['username' => $this->username])
