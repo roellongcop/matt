@@ -53,7 +53,7 @@ class UserController extends Controller
      */
     public function actionCreate()
     {
-        $model = new User();
+        $model = new User(['scenario' => User::SCENARIO_ADMIN_CREATE]);
 
         if ($model->load(App::post()) && $model->validate()) {
             $model->setPassword($model->password);

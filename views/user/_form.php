@@ -12,10 +12,13 @@ use app\widgets\ActiveForm;
 <?php $form = ActiveForm::begin(['id' => 'user-form']); ?>
     <div class="row">
         <div class="col-md-5">
-            <?= $form->bootstrapSelect($model, 'role_id', RoleSearch::dropdown()) ?>
+            <?= $form->bootstrapSelect($model, 'role_id', RoleSearch::dropdown('id', 'name', [
+                'id' => App::identity('roleAccess')
+            ])) ?>
            
             <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
             
             <?= Html::if($model->isNewRecord, implode(' ', [
                 $form->field($model, 'password')->passwordInput(['maxlength' => true]),

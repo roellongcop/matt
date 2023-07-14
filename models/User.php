@@ -70,7 +70,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
             [['password', 'password_repeat'], 'required', 'on' => self::SCENARIO_ADMIN_CREATE],
             ['password', 'string', 'min' => 6],
             ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message' => "Passwords don't match"],
-            [['username', 'role_id', 'status', 'is_blocked'], 'required'],
+            [['username', 'email', 'role_id', 'status', 'is_blocked'], 'required'],
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             [
                 'status',
