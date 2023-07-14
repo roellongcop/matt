@@ -62,11 +62,8 @@ CSS);
             <div class="aside-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center" style="background-image: url(<?= $publishedUrl . '/media/svg/illustrations/payment.svg' ?>)"></div>
         </div>
         <div class="login-content flex-row-fluid d-flex flex-column justify-content-center position-relative overflow-hidden p-7 mx-auto">
-            <div class="d-flex flex-column-fluid flex-center">
-               <form id="kt_login_forgot_form"></form>
-               <form id="kt_login_signin_form"></form>
-               <form id="kt_login_signup_form"></form>
-                
+            <?= Alert::widget() ?>
+            <div class="">
                
               <div class="ss">
                    <div class="ss-container card">
@@ -84,11 +81,15 @@ CSS);
                         Didn't receive an email? <?= Html::tag('a', 'Resend Verification', [
                             'href' => Url::toRoute(['resend-email-verification', 'vt' => $user->verification_token])
                         ]) ?>
-                        <?= Alert::widget() ?>
                     </p>
 
                   </div>
               </div>
         </div>
+        
+       <form id="kt_login_forgot_form"></form>
+       <form id="kt_login_signin_form"></form>
+       <form id="kt_login_signup_form"></form>
+                
     </div>
 </div>

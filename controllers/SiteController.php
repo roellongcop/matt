@@ -215,8 +215,12 @@ class SiteController extends Controller
               
             if ($user->isNotVerified) {
                 $user->status = User::STATUS_ACTIVE;
-
-                App::success('User Successfully Verified!');
+                if ($user->save()) {
+                    App::success('User Successfully Verified!');
+                }
+                else {
+                    App::danger(App::danger($user->errorSummary));
+                }
 
                 return $this->redirect(['login']);
             }
