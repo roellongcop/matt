@@ -37,7 +37,7 @@ JS);
     <div class="login login-1 login-signin-on d-flex flex-column flex-lg-row flex-column-fluid bg-white" id="kt_login">
         <div class="login-aside d-flex flex-column flex-row-auto" style="background-color: #7EBFDB;">
             <div class="d-flex flex-column-auto flex-column pt-lg-40 pt-15">
-                <a href="#" class="text-center mb-15">
+                <a href="/" class="text-center mb-15">
                     <img src="<?= $publishedUrl . '/media/logos/logo-5.svg' ?>" alt="logo" class="h-70px" />
                 </a>
                 <h3 class="font-weight-bolder text-center font-size-h4 font-size-h1-lg text-white">Discover Amazing
