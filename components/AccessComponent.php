@@ -292,6 +292,12 @@ class AccessComponent extends \yii\base\Component
 			'DashboardSearch',
 		];
 
+		if (! App::identity('isDeveloper')) {
+			$ignore[] = 'UserMetaSearch';
+			$ignore[] = 'ThemeSearch';
+			$ignore[] = 'QueueSearch';
+		}
+
 		$data = [];
 		foreach ($searchModels as $key => $searchModel) {
 			$name = str_replace('.php', '', basename($searchModel));

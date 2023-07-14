@@ -29,14 +29,14 @@ class DashboardController extends Controller
             Ip::findByKeywords($keywords, ['name', 'description']),
             Log::findByKeywords($keywords, ['method', 'action', 'controller', 'table_name', 'model_name']),
             Notification::findByKeywords($keywords, ['message']),
-            Queue::findByKeywords($keywords, ['channel', 'job', 'pushed_at']),
+            // Queue::findByKeywords($keywords, ['channel', 'job', 'pushed_at']),
             Role::findByKeywords($keywords, ['name']),
             Session::findByKeywords($keywords, ['id', 'expire', 'ip', 'browser', 'os', 'device']),
             Setting::findByKeywords($keywords, ['name', 'value']),
-            Theme::findByKeywords($keywords, ['name', 'description']),
-            User::findByKeywords($keywords, ['username', 'email']),
-            UserMeta::findByKeywords($keywords, ['name', 'value']),
-            VisitLog::findByKeywords($keywords, ['ip']),
+            // Theme::findByKeywords($keywords, ['name', 'description']),
+            User::findByKeywords($keywords, ['u.username', 'u.email']),
+            // UserMeta::findByKeywords($keywords, ['um.name', 'um.value']),
+            VisitLog::findByKeywords($keywords, ['v.ip']),
             Visitor::findByKeywords($keywords, ['expire', 'cookie', 'ip', 'browser', 'os', 'device', 'location'])
         );
 
