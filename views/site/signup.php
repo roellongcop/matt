@@ -88,15 +88,11 @@ JS);
 
                         <?= $form->field($model, 'country_id', ['template' => '{input}{error}'])->dropDownList(Country::dropdown('id', 'name',), [
                             'class' => 'form-control form-control-solid h-auto p-6 rounded-lg font-size-h6',
-                            'autocomplete' => 'off',
-                            'placeholder' => 'Country',
                             'prompt' => 'Select Country'
                         ]) ?>
 
                         <?= $form->field($model, 'state_id', ['template' => '{input}{error}'])->dropDownList([], [
                             'class' => 'form-control form-control-solid h-auto p-6 rounded-lg font-size-h6',
-                            'autocomplete' => 'off',
-                            'placeholder' => 'State',
                             'prompt' => 'Select State'
                         ]) ?>
 
@@ -110,7 +106,7 @@ JS);
                             </div>
                         </div>
                         <div class="form-group d-flex flex-wrap pb-lg-0 pb-3">
-                        <button type="submit" id="" class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-4">Submit</button>
+                        <button type="submit" id="" class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-4">Create Account</button>
 
                         </div>
                     <?php ActiveForm::end(); ?>

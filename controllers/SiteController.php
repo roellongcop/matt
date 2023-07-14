@@ -5,10 +5,13 @@ namespace app\controllers;
 use app\helpers\App;
 use app\helpers\Html;
 use app\models\State;
+use app\models\User;
 use app\models\form\ContactForm;
 use app\models\form\LoginForm;
 use app\models\form\PasswordResetForm;
 use app\models\form\SignUpForm;
+use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
 
 class SiteController extends Controller
 {
@@ -17,7 +20,7 @@ class SiteController extends Controller
         $behaviors = parent::behaviors();
         $behaviors['AccessControl'] = [
             'class' => 'app\filters\AccessControl',
-            'publicActions' => ['login', 'reset-password', 'contact', 'signup', 'states']
+            'publicActions' => ['login', 'reset-password', 'contact', 'signup', 'states', 'email-verification']
         ];
         $behaviors['VerbFilter'] = [
             'class' => 'app\filters\VerbFilter',
@@ -191,5 +194,38 @@ class SiteController extends Controller
                 $options
             ])
         ]);
+    }
+
+    public function actionEmailVerification($vt='')
+    {
+        if (($user = User::findOne(['verification_token' => $vt])) != null) {
+              
+            if ($user->isNotVerified) {
+                $user->status = User::STATUS_ACTIVE;
+
+                App::success('User Successfully Verified!');
+
+                return $this->redirect(['login']);
+            }
+
+
+            if ($user->isInactive) {
+                App::danger('User is inactive');
+            }
+
+
+            if ($user->isBlocked) {
+                App::danger('User is blocked');
+            }
+
+            if ($user->role->isInactive) {
+                App::danger('Role is inactive');
+            }
+
+            return $this->redirect(['login']);
+        }
+
+
+        throw new NotFoundHttpException('User not found.');
     }
 }
