@@ -16,7 +16,7 @@ $this->params['searchModel'] = new FileSearch([
     'searchAction' => ['my-files'],
 ]);
 $this->params['showCreateButton'] = true; 
-$this->params['activeMenuLink'] = '/my-files';
+$this->params['activeMenuLink'] = Url::toRoute(['my-files']);
 
 $this->addCssFile('css/my-files');
 $this->addJsFile('js/my-files');
