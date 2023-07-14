@@ -20,7 +20,7 @@ class SiteController extends Controller
         $behaviors = parent::behaviors();
         $behaviors['AccessControl'] = [
             'class' => 'app\filters\AccessControl',
-            'publicActions' => ['login', 'reset-password', 'contact', 'signup', 'states', 'email-verification', 'signup-success']
+            'publicActions' => ['login', 'reset-password', 'contact', 'signup', 'states', 'email-verification', 'signup-success', 'resend-email-verification']
         ];
         $behaviors['VerbFilter'] = [
             'class' => 'app\filters\VerbFilter',
@@ -128,7 +128,7 @@ class SiteController extends Controller
         if (($user = User::findOne(['verification_token' => $vt])) != null) {
 
             return $this->render('signup-success', [
-                'model' => $model
+                'user' => $user
             ]);
         }
 
@@ -144,8 +144,6 @@ class SiteController extends Controller
         $model = new SignUpForm();
 
         if ($model->load(App::post()) && ($user = $model->signup()) != null) {
-            App::success('Successfully Created an Account!');
-
             return $this->redirect(['signup-success', 'vt' => $user->verification_token]);
         }
 
@@ -240,6 +238,26 @@ class SiteController extends Controller
             return $this->redirect(['login']);
         }
 
+
+        throw new NotFoundHttpException('User not found.');
+    }
+
+    public function actionResendEmailVerification($vt='')
+    {
+        if (($user = User::findOne(['verification_token' => $vt])) != null) {
+
+            $email = (new SignUpForm())->sendEmail($user);
+
+            if ($email) {
+                App::success('Email Resent!');
+            }
+            else {
+                App::warning('Something went wrong when sending email.');
+            }
+
+            return $this->redirect(['signup-success', 'vt' => $user->verification_token]);
+        
+        }
 
         throw new NotFoundHttpException('User not found.');
     }

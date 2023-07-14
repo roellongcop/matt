@@ -47,13 +47,7 @@ class SignUpForm extends \yii\base\Model
 
             if ($user->save()) {
 
-                $mail = new CustomEmailForm([
-                    'template' => 'signup',
-                    'parameters' => ['user' => $user],
-                    'to' => $this->email
-                ]);
-                $mail->send();
-
+                $this->sendEmail($user);
                 
 
                 return $user;
@@ -63,5 +57,15 @@ class SignUpForm extends \yii\base\Model
             }
 
         }
+    }
+
+    public function sendEmail($user)
+    {
+        $mail = new CustomEmailForm([
+            'template' => 'signup',
+            'parameters' => ['user' => $user],
+            'to' => $user->email
+        ]);
+        return $mail->send();
     }
 }
