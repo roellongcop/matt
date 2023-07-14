@@ -32,6 +32,14 @@ class SignUpForm extends \yii\base\Model
         ];
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'country_id' => 'Country',
+            'state_id' => 'State',
+        ];
+    }
+
 
     public function signup()
     {
