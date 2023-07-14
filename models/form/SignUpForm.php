@@ -63,6 +63,5 @@ class SignUpForm extends \yii\base\Model
             }
 
         }
-        return false;
     }
 }

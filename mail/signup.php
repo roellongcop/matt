@@ -1,5 +1,6 @@
 <?php
 
+use app\helpers\App;
 use app\helpers\Url;
 ?>
 
@@ -14,6 +15,6 @@ use app\helpers\Url;
     </div>
     <div class="footer">
       <p>If you did not create an account, please ignore this email.</p>
-      <p>Regards,<br>Your Company</p>
+      <p>Regards,<br><?= App::appName() ?></p>
     </div>
   </div>

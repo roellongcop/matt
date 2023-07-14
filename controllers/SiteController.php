@@ -20,7 +20,7 @@ class SiteController extends Controller
         $behaviors = parent::behaviors();
         $behaviors['AccessControl'] = [
             'class' => 'app\filters\AccessControl',
-            'publicActions' => ['login', 'reset-password', 'contact', 'signup', 'states', 'email-verification']
+            'publicActions' => ['login', 'reset-password', 'contact', 'signup', 'states', 'email-verification', 'signup-success']
         ];
         $behaviors['VerbFilter'] = [
             'class' => 'app\filters\VerbFilter',
@@ -35,6 +35,7 @@ class SiteController extends Controller
     public function beforeAction($action)
     {
         switch ($action->id) {
+            case 'signup-success':
             case 'signup':
             case 'login':
             case 'reset-password':
@@ -122,6 +123,18 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionSignupSuccess($vt)
+    {
+        if (($user = User::findOne(['verification_token' => $vt])) != null) {
+
+            return $this->render('signup-success', [
+                'model' => $model
+            ]);
+        }
+
+        throw new NotFoundHttpException('User not found.');
+    }
+
     public function actionSignup()
     {
         if (!App::isGuest()) {
@@ -130,8 +143,10 @@ class SiteController extends Controller
 
         $model = new SignUpForm();
 
-        if ($model->load(App::post()) && $model->signup()) {
-            return 'opk';
+        if ($model->load(App::post()) && ($user = $model->signup()) != null) {
+            App::success('Successfully Created an Account!');
+
+            return $this->redirect(['signup-success', 'vt' => $user->verification_token]);
         }
 
         return $this->render('signup', [
