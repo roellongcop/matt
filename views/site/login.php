@@ -3,9 +3,10 @@
 /* @var $form app\widgets\ActiveForm */
 /* @var $model app\models\LoginForm */
 use app\helpers\App;
-use app\widgets\Alert;
-use app\widgets\ActiveForm;
 use app\helpers\Html;
+use app\helpers\Url;
+use app\widgets\ActiveForm;
+use app\widgets\Alert;
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -40,7 +41,11 @@ $publishedUrl = App::publishedUrl();
                         <div class="pb-13 pt-lg-0 pt-5">
                             <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">Welcome</h3>
                             <span class="text-muted font-weight-bold font-size-h4">New Here?
-                            <a href="javascript:;" id="kt_login_signup" class="text-primary font-weight-bolder">Create an Account</a></span>
+                            <?= Html::tag('a', 'Create an Account',  [
+                                'class' => 'text-primary font-weight-bolder',
+                                'href' => Url::toRoute(['signup'])
+                            ]) ?>
+                        </span>
                         </div>
                         <?= $form->field($model, 'username', [
                             'template' => '
@@ -50,7 +55,6 @@ $publishedUrl = App::publishedUrl();
                                 {input}{error}
                             '
                         ])->textInput([
-                            'autofocus' => true, 
                             'class' => 'form-control form-control-solid h-auto p-6 rounded-lg'
                         ]) ?>
                         <?= $form->field($model, 'password', [
@@ -70,17 +74,7 @@ $publishedUrl = App::publishedUrl();
                     <?php ActiveForm::end(); ?>
                 </div>
                 <div class="login-form login-signup">
-                    <?php $form = ActiveForm::begin([
-                        'id' => 'kt_login_signup_form',
-                        'errorCssClass' => 'is-invalid',
-                        'successCssClass' => 'is-valid',
-                        'validationStateOn' => 'input',
-                        'options' => [
-                            'class' => 'form',
-                            'novalidate' => 'novalidate'
-                        ]
-                    ]); ?>
-                    
+                    <form class="form" novalidate="novalidate" id="kt_login_signup_form">
                         <div class="pb-13 pt-lg-0 pt-5">
                             <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">Sign Up</h3>
                             <p class="text-muted font-weight-bold font-size-h4">Enter your details to create your account</p>
@@ -109,7 +103,7 @@ $publishedUrl = App::publishedUrl();
                         <button type="button" id="kt_login_signup_submit" class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-4">Submit</button>
                             <button type="button" id="kt_login_signup_cancel" class="btn btn-light-primary font-weight-bolder font-size-h6 px-8 py-4 my-3">Cancel</button>
                         </div>
-                    <?php ActiveForm::end(); ?>
+                    </form>
                 </div>
                 <div class="login-form login-forgot">
                     <?php $form = ActiveForm::begin([

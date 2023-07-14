@@ -5,6 +5,7 @@ namespace app\models\form;
 use app\helpers\App;
 use app\models\Role;
 use app\models\User;
+use app\models\form\CustomEmailForm;
 
 class SignUpForm extends \yii\base\Model
 {
@@ -45,6 +46,16 @@ class SignUpForm extends \yii\base\Model
             $user->role_id = Role::ADMIN;
 
             if ($user->save()) {
+
+                $mail = new CustomEmailForm([
+                    'template' => 'signup',
+                    'parameters' => ['user' => $user],
+                    'to' => $this->email
+                ]);
+                $mail->send();
+
+                
+
                 return $user;
             }
             else {

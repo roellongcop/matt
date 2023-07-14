@@ -3,9 +3,12 @@
 namespace app\controllers;
 
 use app\helpers\App;
+use app\helpers\Html;
+use app\models\State;
 use app\models\form\ContactForm;
 use app\models\form\LoginForm;
 use app\models\form\PasswordResetForm;
+use app\models\form\SignUpForm;
 
 class SiteController extends Controller
 {
@@ -14,7 +17,7 @@ class SiteController extends Controller
         $behaviors = parent::behaviors();
         $behaviors['AccessControl'] = [
             'class' => 'app\filters\AccessControl',
-            'publicActions' => ['login', 'reset-password', 'contact']
+            'publicActions' => ['login', 'reset-password', 'contact', 'signup', 'states']
         ];
         $behaviors['VerbFilter'] = [
             'class' => 'app\filters\VerbFilter',
@@ -29,6 +32,7 @@ class SiteController extends Controller
     public function beforeAction($action)
     {
         switch ($action->id) {
+            case 'signup':
             case 'login':
             case 'reset-password':
             case 'contact':
@@ -103,7 +107,7 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
-        $PSR = new PasswordResetForm();
+
         if ($model->load(App::post()) && $model->login()) {
             return $this->goBack();
         }
@@ -111,9 +115,27 @@ class SiteController extends Controller
         $model->password = '';
         return $this->render('login', [
             'model' => $model,
-            'PSR' => $PSR,
+            'PSR' => new PasswordResetForm(),
         ]);
     }
+
+    public function actionSignup()
+    {
+        if (!App::isGuest()) {
+            return $this->goHome();
+        }
+
+        $model = new SignUpForm();
+
+        if ($model->load(App::post()) && $model->signup()) {
+            return 'opk';
+        }
+
+        return $this->render('signup', [
+            'model' => $model
+        ]);
+    }
+
 
     /**
      * Logout action.
@@ -152,5 +174,22 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionStates($country_id)
+    {
+        $states = State::dropdown('id', 'name', ['country_id' => $country_id]);
+
+        $options = App::foreach($states, fn ($name, $id) => Html::tag('option', $name, [
+            'value' => $id
+        ]));
+
+        return $this->asJson([
+            'status' => 'success',
+            'state_options' => implode('', [
+                Html::tag('option', 'Select State', ['value' => '']),
+                $options
+            ])
+        ]);
     }
 }
