@@ -70,7 +70,17 @@ $publishedUrl = App::publishedUrl();
                     <?php ActiveForm::end(); ?>
                 </div>
                 <div class="login-form login-signup">
-                    <form class="form" novalidate="novalidate" id="kt_login_signup_form">
+                    <?php $form = ActiveForm::begin([
+                        'id' => 'kt_login_signup_form',
+                        'errorCssClass' => 'is-invalid',
+                        'successCssClass' => 'is-valid',
+                        'validationStateOn' => 'input',
+                        'options' => [
+                            'class' => 'form',
+                            'novalidate' => 'novalidate'
+                        ]
+                    ]); ?>
+                    
                         <div class="pb-13 pt-lg-0 pt-5">
                             <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">Sign Up</h3>
                             <p class="text-muted font-weight-bold font-size-h4">Enter your details to create your account</p>
@@ -99,7 +109,7 @@ $publishedUrl = App::publishedUrl();
                         <button type="button" id="kt_login_signup_submit" class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-4">Submit</button>
                             <button type="button" id="kt_login_signup_cancel" class="btn btn-light-primary font-weight-bolder font-size-h6 px-8 py-4 my-3">Cancel</button>
                         </div>
-                    </form>
+                    <?php ActiveForm::end(); ?>
                 </div>
                 <div class="login-form login-forgot">
                     <?php $form = ActiveForm::begin([

@@ -86,7 +86,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
             ['email', 'trim'],
             ['email', 'unique'],
             ['username', 'unique'],
-            [['password_hint', 'password_reset_token', 'password_hash', 'photo'], 'safe'],
+            [['password_hint', 'password_reset_token', 'password_hash', 'photo', 'name'], 'safe'],
             ['role_id', 'exist', 'targetRelation' => 'role'],
             ['role_id', 'validateRoleId'],
         ]);
