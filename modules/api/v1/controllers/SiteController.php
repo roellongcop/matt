@@ -4,6 +4,7 @@ namespace app\modules\api\v1\controllers;
 
 use app\helpers\App;
 use app\helpers\Url;
+use app\helpers\Html;
 use app\modules\api\v1\models\form\LoginForm;
 
 class SiteController extends RestController
@@ -23,8 +24,8 @@ class SiteController extends RestController
 
         return [
             'status' => 'failed',
-            'post' => App::post(),
-            'message' => $model->errors ?: 'No post data'
+            'message' => App::post() ? 'Login Failed! Please check username and password': 'No post data',
+            'errors' => $model->errors,
         ];
     }
 }

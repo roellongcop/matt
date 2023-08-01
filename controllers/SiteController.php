@@ -178,6 +178,8 @@ class SiteController extends Controller
     {
         App::logout();
 
+        return $this->redirect('https://matt1820.org/login/');
+
         return $this->goHome();
     }
 
