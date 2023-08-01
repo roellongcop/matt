@@ -14,6 +14,6 @@ class CountryController extends ActiveController
 
     public function actionList()
     {
-        return Country::find()->all();
+        return Country::find()->orderBy(['name' => SORT_ASC])->all();
     }
 }
