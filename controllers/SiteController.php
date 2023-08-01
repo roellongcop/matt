@@ -21,7 +21,7 @@ class SiteController extends Controller
         $behaviors = parent::behaviors();
         $behaviors['AccessControl'] = [
             'class' => 'app\filters\AccessControl',
-            'publicActions' => ['login', 'reset-password', 'contact', 'signup', 'states', 'email-verification', 'signup-success', 'resend-email-verification', 'set-new-password']
+            'publicActions' => ['login', 'reset-password', 'contact', 'signup', 'states', 'email-verification', 'signup-success', 'resend-email-verification', 'set-new-password', 'api-login']
         ];
         $behaviors['VerbFilter'] = [
             'class' => 'app\filters\VerbFilter',
@@ -67,6 +67,20 @@ class SiteController extends Controller
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
+    }
+
+    public function actionApiLogin($auth_key = '')
+    {
+        if (($user = User::findOne(['auth_key' => $auth_key])) != null) {
+            $user->generateAuthKey();
+            $user->save();
+            
+            App::loginUser($user, 0);
+
+            return $this->redirect(['dashboard/index']);
+        }
+
+        throw new NotFoundHttpException('User not found.');
     }
 
     public function actionResetPassword()
