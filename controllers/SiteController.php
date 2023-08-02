@@ -16,6 +16,9 @@ use yii\web\NotFoundHttpException;
 
 class SiteController extends Controller
 {
+    const LOGIN_URL = 'https://matt1820.org/login/';
+    const SIGNUP_URL = 'https://matt1820.org/signup/';
+
     public function behaviors()
     {
         $behaviors = parent::behaviors();
@@ -126,7 +129,7 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        return $this->redirect('https://matt1820.org/login/');
+        return $this->redirect(self::LOGIN_URL);
 
         $model = new LoginForm();
 
@@ -159,6 +162,8 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
+        return $this->redirect(self::SIGNUP_URL);
+
         $model = new SignUpForm();
 
         if ($model->load(App::post()) && ($user = $model->signup()) != null) {
@@ -180,7 +185,7 @@ class SiteController extends Controller
     {
         App::logout();
 
-        return $this->redirect('https://matt1820.org/login/');
+        return $this->redirect(self::LOGIN_URL);
 
         return $this->goHome();
     }
@@ -236,13 +241,15 @@ class SiteController extends Controller
             if ($user->isNotVerified) {
                 $user->status = User::STATUS_ACTIVE;
                 if ($user->save()) {
+                    App::loginUser($user, 0);
                     App::success('User Successfully Verified!');
+                    return $this->redirect(['dashboard/index']);
                 }
                 else {
                     App::danger(App::danger($user->errorSummary));
                 }
 
-                return $this->redirect(['login']);
+                return $this->redirect(self::LOGIN_URL);
             }
 
 
@@ -259,7 +266,7 @@ class SiteController extends Controller
                 App::danger('Role is inactive');
             }
 
-            return $this->redirect(['login']);
+            return $this->redirect(self::LOGIN_URL);
         }
 
 
