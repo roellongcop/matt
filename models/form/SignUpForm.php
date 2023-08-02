@@ -49,6 +49,8 @@ class SignUpForm extends \yii\base\Model
             $user->name = $this->name;
             $user->email = $this->email;
             $user->username = $this->email;
+            $user->country_id = $this->country_id;
+            $user->state_id = $this->state_id;
             $user->status = User::STATUS_INACTIVE;
             $user->is_blocked = User::UNBLOCKED;
             $user->role_id = Role::ADMIN;

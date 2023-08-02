@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * Handles adding columns to table `{{%users}}`.
+ */
+class m230802_090544_add_columns_to_users_table extends \app\migrations\Migration
+{
+    public function tableName()
+    {
+        return '{{%users}}';
+    }
+
+    public function columns()
+    {
+        return [
+            'country_id' => $this->bigInteger(20)->notNull()->defaultValue(0),
+            'state_id' => $this->bigInteger(20)->notNull()->defaultValue(0),
+        ];
+
+        // FOR SETTING utf
+        // ->append('CHARACTER SET utf8 COLLATE utf8mb4_unicode_520_ci')
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function safeUp()
+    {
+        $this->addColumns($this->tableName(), $this->columns());
+        
+        $this->createIndexes($this->tableName(), [
+            'country_id' => 'country_id',
+            'state_id' => 'state_id',
+        ]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function safeDown()
+    {
+        $this->dropColumns($this->tableName(), $this->columns());
+    }
+}

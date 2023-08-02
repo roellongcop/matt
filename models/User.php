@@ -89,6 +89,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
             [['password_hint', 'password_reset_token', 'password_hash', 'photo', 'name'], 'safe'],
             ['role_id', 'exist', 'targetRelation' => 'role'],
             ['role_id', 'validateRoleId'],
+            [['country_id', 'state_id'], 'integer'],
         ]);
     }
 
@@ -96,7 +97,9 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     {
         return $this->setAttributeLabels([
             'role_id' => 'Role',
-            'is_blocked' => 'Blocked'
+            'is_blocked' => 'Blocked',
+            'country_id' => 'Country',
+            'state_id' => 'State',
         ]);
     }
 
@@ -381,6 +384,24 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public function getRole()
     {
         return $this->hasOne(Role::class, ['id' => 'role_id']);
+    }
+
+    public function getCountry()
+    {
+        return $this->hasOne(Country::class, ['id' => 'country_id']);
+    }
+    public function getCountryName()
+    {
+        return App::if ($this->country, fn($country) => $country->name);
+    }
+
+    public function getState()
+    {
+        return $this->hasOne(State::class, ['id' => 'state_id']);
+    }
+    public function getStateName()
+    {
+        return App::if ($this->state, fn($state) => $state->name);
     }
 
     public function getTableColumnsMeta($model)
