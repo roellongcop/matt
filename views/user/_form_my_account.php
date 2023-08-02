@@ -12,19 +12,12 @@ use app\widgets\ActiveForm;
 <?php $form = ActiveForm::begin(['id' => 'user-form-my-account']); ?>
     <div class="row">
         <div class="col-md-5">
-            <?= $form->bootstrapSelect($model, 'role_id', RoleSearch::dropdown()) ?>
             
             <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-            <?= $form->bootstrapSelect($model, 'status', App::keyMapParams('user_status'), [
-                'searchable' => false,
-            ]) ?>
-          
-            <?= $form->recordStatus($model) ?>
-            <?= $form->bootstrapSelect($model, 'is_blocked', App::keyMapParams('user_block_status'), [
-                'searchable' => false,
-            ]) ?>
+            
+
         </div>
         <div class="col-md-5">
             <?= Html::image($model->photo, ['w' => 200], [
