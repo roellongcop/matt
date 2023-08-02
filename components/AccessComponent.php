@@ -304,10 +304,19 @@ class AccessComponent extends \yii\base\Component
 		foreach ($searchModels as $key => $searchModel) {
 			$name = str_replace('.php', '', basename($searchModel));
 
+
 			if (!in_array($name, $ignore)) {
-				$data[$name] = Inflector::camel2words(str_replace('Search', '', $name));
+				$className = str_replace('Search', '', $name);
+				$controllerId = Inflector::camel2id($className);
+
+				if (App::isLogin()) {
+					if ($this->userCan('index', $controllerId)) {
+						$data[$name] = Inflector::camel2words($className);
+					}
+				}
 			}
 		}
+
 
 		$this->searchModels = $data;
 	}

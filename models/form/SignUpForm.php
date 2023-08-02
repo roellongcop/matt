@@ -70,6 +70,7 @@ class SignUpForm extends \yii\base\Model
     public function sendEmail($user)
     {
         $mail = new CustomEmailForm([
+            'subject' => 'Email Verification',
             'template' => 'signup',
             'parameters' => ['user' => $user],
             'to' => $user->email
