@@ -126,6 +126,8 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
+        return $this->redirect('https://matt1820.org/login/');
+
         $model = new LoginForm();
 
         if ($model->load(App::post()) && $model->login()) {
