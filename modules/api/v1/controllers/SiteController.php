@@ -6,9 +6,28 @@ use app\helpers\App;
 use app\helpers\Url;
 use app\helpers\Html;
 use app\modules\api\v1\models\form\LoginForm;
+use app\modules\api\v1\models\form\SignUpForm;
 
 class SiteController extends RestController
 {
+    public function actionSignup()
+    {
+        $model = new SignUpForm();
+
+        if ($model->load(['SignUpForm' => App::post()]) && ($user = $model->signup()) != null) {
+            return [
+                'status' => 'success',
+                'message' => 'Signed Up Successfully',
+                'user' => $user
+            ];
+        }
+
+        return [
+            'status' => 'failed',
+            'message' => App::post() ? 'Sign up failed! Please check inputs': 'No post data',
+            'errors' => $model->errors,
+        ];
+    }
 
     public function actionLogin()
     {
