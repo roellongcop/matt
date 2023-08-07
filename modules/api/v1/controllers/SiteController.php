@@ -24,7 +24,7 @@ class SiteController extends RestController
 
         return [
             'status' => 'failed',
-            'message' => App::post() ? 'Sign up failed! Please check inputs': 'No post data',
+            'message' => App::post() ? Html::errorSummary($model): 'No post data',
             'errors' => $model->errors,
         ];
     }
