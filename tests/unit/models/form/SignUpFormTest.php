@@ -13,6 +13,7 @@ class SignUpFormTest extends \Codeception\Test\Unit
         $model = new SignUpForm([
             'email' => 'test@test.com',
             'password' => 'password',
+            'confirm_password' => 'password',
             'name' => 'Roel',
             'country_id' => Country::PH,
             'state_id' => State::ROMBLON,
@@ -37,6 +38,7 @@ class SignUpFormTest extends \Codeception\Test\Unit
         $model = new SignUpForm([
             'email' => 'asdasdasd',
             'password' => 'password',
+            'confirm_password' => 'password',
             'name' => 'Roel',
             'country_id' => Country::PH,
             'state_id' => State::ROMBLON,
@@ -50,6 +52,7 @@ class SignUpFormTest extends \Codeception\Test\Unit
         $model = new SignUpForm([
             'email' => 'test@test.com',
             'password' => 'password',
+            'confirm_password' => 'password',
             'name' => 'Roel',
             'country_id' => 456464,
             'state_id' => State::ROMBLON,
@@ -63,11 +66,26 @@ class SignUpFormTest extends \Codeception\Test\Unit
         $model = new SignUpForm([
             'email' => 'test@test.com',
             'password' => 'password',
+            'confirm_password' => 'password',
             'name' => 'Roel',
             'country_id' => Country::PH,
             'state_id' => 111111111,
         ]);
         expect_not($model->signup());
         expect($model->errors)->hasKey('state_id');
+    }
+
+    public function testPasswordDontMatch()
+    {
+        $model = new SignUpForm([
+            'email' => 'test@test.com',
+            'password' => 'password',
+            'confirm_password' => 'password_not_match',
+            'name' => 'Roel',
+            'country_id' => Country::PH,
+            'state_id' => 111111111,
+        ]);
+        expect_not($model->signup());
+        expect($model->errors)->hasKey('confirm_password');
     }
 }

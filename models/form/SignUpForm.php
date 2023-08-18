@@ -11,6 +11,7 @@ class SignUpForm extends \yii\base\Model
 {
     public $email;
     public $password;
+    public $confirm_password;
     public $name;
     public $country_id;
     public $state_id;
@@ -28,7 +29,8 @@ class SignUpForm extends \yii\base\Model
             ['state_id', 'exist', 'targetClass' => 'app\models\State', 'targetAttribute' => 'id', 'when' => fn($model) => $model->state_id],
             [['email', 'password'], 'trim'],
             ['email', 'email'],
-             ['email', 'unique', 'targetClass' => 'app\models\User', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => 'app\models\User', 'message' => 'This email address has already been taken.'],
+            ['confirm_password', 'compare', 'compareAttribute'=>'password'],
         ];
     }
 
