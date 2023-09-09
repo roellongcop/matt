@@ -24,7 +24,18 @@ class SiteController extends Controller
         $behaviors = parent::behaviors();
         $behaviors['AccessControl'] = [
             'class' => 'app\filters\AccessControl',
-            'publicActions' => ['login', 'reset-password', 'contact', 'signup', 'states', 'email-verification', 'signup-success', 'resend-email-verification', 'set-new-password', 'api-login']
+            'publicActions' => [
+                'login',
+                'reset-password',
+                'contact',
+                'signup',
+                'states',
+                'email-verification',
+                'signup-success',
+                'resend-email-verification',
+                'set-new-password',
+                'api-login'
+            ]
         ];
         $behaviors['VerbFilter'] = [
             'class' => 'app\filters\VerbFilter',
