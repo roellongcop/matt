@@ -16,6 +16,7 @@ use yii\web\NotFoundHttpException;
 
 class SiteController extends Controller
 {
+    // live
     const LOGIN_URL = 'https://matt1820.org/login/';
     const SIGNUP_URL = 'https://matt1820.org/signup/';
 
