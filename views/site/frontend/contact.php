@@ -6,8 +6,8 @@
     
     </div>
     <div class="row">
-      <div class="col-md-7">
-	  <strong>Please give us your feedback!</strong>
+      <div class="col-md-7 form-container">
+	     <strong>Please give us your feedback!</strong>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
         <form id="contact" method="post" class="form" role="form">
           <div class="row">

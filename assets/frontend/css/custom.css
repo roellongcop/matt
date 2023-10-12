@@ -63,3 +63,12 @@
   background-color: #e9af03 !important;
   outline: 0px;
 }
+
+#contact .btn {
+  margin-top: 30px !important;
+}
+
+#contact .form-container,
+#contact .form-group {
+  padding-right: 0 !important;
+}
