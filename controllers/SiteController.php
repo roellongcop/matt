@@ -128,10 +128,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        if (App::isLogin()) {
-            return $this->redirect(['dashboard/index']);
-        }
-
         return $this->render('index');
     }
 
@@ -143,7 +139,7 @@ class SiteController extends Controller
     public function actionLogin()
     {
         if (!App::isGuest()) {
-            return $this->goHome();
+            return $this->redirect(['dashboard/index']);
         }
 
         $model = new LoginForm();

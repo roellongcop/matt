@@ -1,8 +1,8 @@
 .navbar-inverse .navbar-nav > .active > a, 
 .navbar-inverse .navbar-nav > .active > a:hover, 
 .navbar-inverse .navbar-nav > .active > a:focus {
-  color: #080808;
-  background-color: #ededed;
+  color: #fff;
+  background-color: #ee9e2b;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover {
@@ -21,7 +21,6 @@
 
 .btn-signin {
   border-radius: 10px !important;
-  text-transform: uppercase;
   font-weight: 600 !important;
 }
 

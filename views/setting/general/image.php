@@ -18,6 +18,7 @@ use app\widgets\ActiveForm;
                         $('img.primary_logo').attr('src', s.src);
                     }
                 ",
+                'fixedSize' => false
             ]) ?>
 		</div>
 		<div class="col-md-4">

@@ -8,8 +8,8 @@ use app\helpers\Html;
     <div class="brand flex-column-auto" id="kt_brand">
         <!--begin::Logo-->
         <a href="/" class="brand-logo">
-            <?= Html::image(App::setting('image')->primary_logo, ['w' => 50, 'quality' => 90], [
-                'class' => 'h-30px',
+            <?= Html::image(App::setting('image')->primary_logo, ['w' => 200, 'quality' => 90], [
+                'class' => 'h-40px',
                 'alt' => 'Primary Logo',
             ]) ?>
         </a>
