@@ -1,0 +1,66 @@
+.navbar-inverse .navbar-nav > .active > a, 
+.navbar-inverse .navbar-nav > .active > a:hover, 
+.navbar-inverse .navbar-nav > .active > a:focus {
+  color: #080808;
+  background-color: #ededed;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+  color: #E89A2F;
+}
+
+.img-logo {
+  max-height: 50px;
+}
+
+#headerwrap {
+  display: flex;
+  align-items: center;
+  margin-top: 0 !important;
+}
+
+.btn-signin {
+  border-radius: 10px !important;
+  text-transform: uppercase;
+  font-weight: 600 !important;
+}
+
+.reservation-btn {
+  border-radius: 10px !important;
+  text-transform: uppercase;
+  font-weight: 600 !important;
+  background: #ededed;
+  color: #000;
+}
+
+
+.br-10 {
+  border-radius: 10px !important;
+}
+
+#about img {
+  margin-top: 0px;
+}
+
+.grid.overlay .img-responsive,
+.mh-400 {
+  max-height: 400px;
+}
+
+.d-flex {
+  display: flex !important;
+} 
+
+.justify-content-center {
+  justify-content: center !important;
+}
+
+#headerwrap .btn {
+  color: #FFFFFF !important;
+}
+
+#headerwrap .btn:hover, 
+#headerwrap .btn:focus {
+  background-color: #e9af03 !important;
+  outline: 0px;
+}

@@ -16,16 +16,13 @@ use yii\web\NotFoundHttpException;
 
 class SiteController extends Controller
 {
-    // live
-    const LOGIN_URL = 'https://matt1820.org/login/';
-    const SIGNUP_URL = 'https://matt1820.org/signup/';
-
     public function behaviors()
     {
         $behaviors = parent::behaviors();
         $behaviors['AccessControl'] = [
             'class' => 'app\filters\AccessControl',
             'publicActions' => [
+                'index',
                 'login',
                 'reset-password',
                 'contact',
@@ -45,16 +42,24 @@ class SiteController extends Controller
             ]
         ];
 
+        if ($this->action->id === 'index') {
+            unset($behaviors['ThemeFilter']);
+        }
+
         return $behaviors;
     }
 
     public function beforeAction($action)
     {
         switch ($action->id) {
-            case 'set-new-password':
-            case 'signup-success':
+            case 'index':
+                $this->layout = 'frontend';
+                break;
+
             case 'signup':
             case 'login':
+            case 'set-new-password':
+            case 'signup-success':
             case 'reset-password':
             case 'contact':
                 $this->layout = 'login';
@@ -141,8 +146,6 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        return $this->redirect(self::LOGIN_URL);
-
         $model = new LoginForm();
 
         if ($model->load(App::post()) && $model->login()) {
@@ -174,8 +177,6 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        return $this->redirect(self::SIGNUP_URL);
-
         $model = new SignUpForm();
 
         if ($model->load(App::post()) && ($user = $model->signup()) != null) {
@@ -196,8 +197,6 @@ class SiteController extends Controller
     public function actionLogout()
     {
         App::logout();
-
-        return $this->redirect(self::LOGIN_URL);
 
         return $this->goHome();
     }
@@ -261,7 +260,7 @@ class SiteController extends Controller
                     App::danger(App::danger($user->errorSummary));
                 }
 
-                return $this->redirect(self::LOGIN_URL);
+                return $this->redirect(['login']);
             }
 
 
@@ -278,7 +277,7 @@ class SiteController extends Controller
                 App::danger('Role is inactive');
             }
 
-            return $this->redirect(self::LOGIN_URL);
+            return $this->redirect(['login']);
         }
 
 
