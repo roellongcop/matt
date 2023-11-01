@@ -41,9 +41,17 @@
   margin-top: 0px;
 }
 
-.grid.overlay .img-responsive,
+.grid figcaption, .grid figure {
+  border-radius: 10px;
+}
+
+
 .mh-400 {
   max-height: 400px;
+}
+
+.grid.overlay .img-responsive {
+  max-height: 300px;
 }
 
 .d-flex {
