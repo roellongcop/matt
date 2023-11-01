@@ -43,6 +43,7 @@
 
 .grid figcaption, .grid figure {
   border-radius: 10px;
+  cursor: pointer;
 }
 
 
@@ -80,3 +81,14 @@
 #contact .form-group {
   padding-right: 0 !important;
 }
+
+.grid figcaption h5 {
+  padding-left: 0;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+  color: #fff;
+    background-color: #ee9e2b;
+    border-color: #ee9e2b;
+}
+

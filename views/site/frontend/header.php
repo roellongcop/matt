@@ -17,4 +17,3 @@ use app\helpers\App;
   	</header>
   </div>
 </div>
-<div class="div-pattern2"></div>

@@ -20,4 +20,3 @@ use yii\helpers\Html;
   </div>
     
 </section>
-<div class="div-pattern"></div>

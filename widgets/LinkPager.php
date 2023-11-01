@@ -260,7 +260,7 @@ class LinkPager extends Widget
         }
 
 
-        return Html::a($label, $this->pagination->createUrl($page), $linkOptions);
+        return \yii\helpers\Html::a($label, $this->pagination->createUrl($page), $linkOptions);
         // return Html::tag($linkWrapTag, Html::a($label, $this->pagination->createUrl($page), $linkOptions), $options);
     }
 

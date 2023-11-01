@@ -1,6 +1,7 @@
 <?php
 
 use app\helpers\App;
+use app\models\Video;
 ?>
 
 <div id="portfolio" name="portfolio">
@@ -12,103 +13,16 @@ use app\helpers\App;
         <p class="large">Join us in our Live Prayers section for spiritual guidance and communal worship. Experience heartfelt prayers and sermons in real-time, connecting believers worldwide.</p>
       </div>
     </div>
-    <!-- /row -->
     <div class="container">
-      <div class="row"> 
-        
-        <!-- PORTFOLIO IMAGE 1 -->
-        <div class="col-md-4 ">
-          <div class="grid overlay">
-            <figure> <img class="img-responsive br-10" src="<?= App::publishedUrl('/img/portfolio/1.jpg', '@app/assets/frontend') ?>" alt="">
-              <figcaption>
-                <h5>Photo</h5>
-                <a data-toggle="modal" href="#myModal" class="btn btn-default br-10">More Details</a> </figcaption>
-              <!-- /figcaption --> 
-            </figure>
-            <!-- /figure --> 
-          </div>
-          <!-- /grid-overlay --> 
-        </div> 
-    
-        
-        <!-- PORTFOLIO IMAGE 2 -->
-        <div class="col-md-4">
-          <div class="grid overlay">
-            <figure> 
-              <img class="img-responsive br-10" src="<?= App::publishedUrl('/img/portfolio/2.jpg', '@app/assets/frontend') ?>" alt="">
-              <figcaption>
-                <h5>Photo</h5>
-                <a data-toggle="modal" href="#myModal" class="btn btn-default br-10">More Details</a> </figcaption>
-              <!-- /figcaption --> 
-            </figure>
-            <!-- /figure --> 
-          </div>
-          <!-- /grid-overlay --> 
-        </div>
-        
-        <!-- PORTFOLIO IMAGE 3 -->
-        <div class="col-md-4">
-          <div class="grid overlay">
-            <figure> 
-              <img class="img-responsive br-10" src="<?= App::publishedUrl('/img/portfolio/3.jpg', '@app/assets/frontend') ?>" alt="">
-              <figcaption>
-                <h5>Photo</h5>
-                <a data-toggle="modal" href="#myModal" class="btn btn-default br-10">More Details</a> </figcaption>
-              <!-- /figcaption --> 
-            </figure>
-            <!-- /figure --> 
-          </div>
-          <!-- /grid-overlay --> 
-        </div>
+      <div class="d-flex" style="flex-wrap: wrap;justify-content: center;gap: 20px">
+        <?= App::foreach(Video::active(), fn ($model) => $this->render('_portfolio', [
+          'model' => $model
+        ])) ?>
       </div>
-      <!-- /row --> 
-      
-      <!-- PORTFOLIO IMAGE 4 -->
-      <div class="row">
-        <div class="col-md-4 ">
-          <div class="grid overlay">
-            <figure> <img class="img-responsive br-10" src="<?= App::publishedUrl('/img/portfolio/4.jpg', '@app/assets/frontend') ?>" alt="">
-              <figcaption>
-                <h5>Photo</h5>
-                <a data-toggle="modal" href="#myModal" class="btn btn-default br-10">More Details</a> </figcaption>
-              <!-- /figcaption --> 
-            </figure>
-            <!-- /figure --> 
-          </div>
-          <!-- /grid-overlay --> 
-        </div>
-        
-        <!-- PORTFOLIO IMAGE 5 -->
-        <div class="col-md-4">
-          <div class="grid overlay">
-            <figure> <img class="img-responsive br-10" src="<?= App::publishedUrl('/img/portfolio/5.jpg', '@app/assets/frontend') ?>" alt="">
-              <figcaption>
-                <h5>Photo</h5>
-                <a data-toggle="modal" href="#myModal" class="btn btn-default br-10">More Details</a> </figcaption>
-              <!-- /figcaption --> 
-            </figure>
-            <!-- /figure --> 
-          </div>
-          <!-- /grid-overlay --> 
-        </div>
-        
-        <!-- PORTFOLIO IMAGE 6 -->
-        <div class="col-md-4">
-          <div class="grid overlay">
-            <figure> <img class="img-responsive br-10" src="<?= App::publishedUrl('/img/portfolio/6.jpg', '@app/assets/frontend') ?>" alt="">
-              <figcaption>
-                <h5>Photo</h5>
-                <a data-toggle="modal" href="#myModal" class="btn btn-default br-10">More Details</a> </figcaption>
-              <!-- /figcaption --> 
-            </figure>
-            <!-- /figure --> 
-          </div>
-          <!-- /grid-overlay --> 
-        </div>
-        <!-- /col --> 
+
+      <div class="text-center" style="margin-top: 20px;">
+        <?= \yii\helpers\Html::a('View All', ['site/view-all-videos'], ['class' => 'btn btn-lg btn-warning']) ?>
       </div>
-      <!-- /row --> 
     </div>
-    <!-- /row --> 
   </div>
 </div>

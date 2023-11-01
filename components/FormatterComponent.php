@@ -6,6 +6,7 @@ use app\helpers\App;
 use app\widgets\JsonEditor;
 use yii\helpers\Inflector;
 use yii\helpers\Json;
+use app\helpers\Html;
 
 class FormatterComponent extends \yii\i18n\Formatter
 {
@@ -140,5 +141,10 @@ class FormatterComponent extends \yii\i18n\Formatter
         $end = date("Y-m-d", strtotime($dates[1]));
 
         return ($return == 'start') ? $start : $end;
+    }
+
+    public function asLink($url, $options=['target' => '_blank'])
+    {
+        return Html::a($url, $url, $options);
     }
 }

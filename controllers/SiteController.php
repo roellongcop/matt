@@ -11,6 +11,7 @@ use app\models\form\LoginForm;
 use app\models\form\PasswordResetForm;
 use app\models\form\SetNewPasswordForm;
 use app\models\form\SignUpForm;
+use app\models\search\VideoSearch;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 
@@ -32,7 +33,8 @@ class SiteController extends Controller
                 'signup-success',
                 'resend-email-verification',
                 'set-new-password',
-                'api-login'
+                'api-login',
+                'view-all-videos'
             ]
         ];
         $behaviors['VerbFilter'] = [
@@ -53,6 +55,7 @@ class SiteController extends Controller
     {
         switch ($action->id) {
             case 'index':
+            case 'view-all-videos':
                 $this->layout = 'frontend';
                 break;
 
@@ -323,5 +326,16 @@ class SiteController extends Controller
 
         }
         throw new NotFoundHttpException('User not found.');
+    }
+
+    public function actionViewAllVideos()
+    {
+        $searchModel = new VideoSearch();
+        $dataProvider = $searchModel->search(['VideoSearch' => App::queryParams()]);
+
+        return $this->render('view-all-videos', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 }

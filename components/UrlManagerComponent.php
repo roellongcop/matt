@@ -19,7 +19,7 @@ class UrlManagerComponent extends \yii\web\UrlManager
         'my-account' => 'user/my-account',
         'my-password' => 'user/my-password',
 
-        '<action:index|login|reset-password|contact|signup|email-verification|resend-email-verification|signup-success>' => 'site/<action>',
+        '<action:index|login|reset-password|contact|signup|email-verification|resend-email-verification|signup-success|view-all-videos>' => 'site/<action>',
 
         'setting/general/<tab>' => 'setting/general',
         'setting/general' => 'setting/general',
