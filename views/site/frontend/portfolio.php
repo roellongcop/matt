@@ -6,10 +6,10 @@ use app\helpers\App;
 <div id="portfolio" name="portfolio">
   <div class="container">
     <div class="row">
-      <h2 class="centered">What Special</h2>
+      <h2 class="centered">Live Videos</h2>
       <hr>
       <div class="col-lg-8 col-lg-offset-2 centered">
-        <p class="large">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+        <p class="large">Join us in our Live Prayers section for spiritual guidance and communal worship. Experience heartfelt prayers and sermons in real-time, connecting believers worldwide.</p>
       </div>
     </div>
     <!-- /row -->

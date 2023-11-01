@@ -2,6 +2,7 @@
 
 use app\helpers\App;
 use app\helpers\Url;
+use yii\helpers\Html;
 ?>
 
 <div id="navbar-main"> 
@@ -21,10 +22,13 @@ use app\helpers\Url;
         <ul class="nav navbar-nav pull-right">
           <li><a href="#home-section" class="page-scroll">Welcome</a></li>
           <li> <a href="#about" class="page-scroll"> About Us</a></li>
-          <li> <a href="#portfolio" class="page-scroll"> Special</a></li>
+          <li> <a href="#portfolio" class="page-scroll"> Live Videos</a></li>
           <li> <a href="#services" class="page-scroll">We Offer</a></li>		  
           <li> <a href="#team" class="page-scroll"> Team</a></li>
           <li> <a href="#contact" class="page-scroll"> Get In Touch</a></li>
+          <li>
+            <?= App::isGuest() ? Html::a('Sign In', ['site/login'], ['class' => 'page-scroll']): Html::a('Dashboard', ['dashboard/index'], ['class' => 'page-scroll']) ?>
+          </li>
         </ul>
       </div>
       <!--/.nav-collapse --> 

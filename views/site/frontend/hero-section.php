@@ -7,8 +7,7 @@ use yii\helpers\Html;
   <div class="container">
       <div class="highlight tb">
           <div class="tb-cell">
-              <p>Erat imperdiet dissentias ea usu, alia aliquid corrumpit ea qui!</br>
-              erant bonorum albucius et per, ei sapientem accommodare est. Saepe dolorum constituam ei!!</p>
+              <p>Explore exclusive content and personalized experiences in our special section. Sign up now to unlock a world of benefits tailored just for you. Stay connected, stay informed, and make the most of every moment with us.</p>
           </div>
           <div class="links tb-cell">
               <div class="reservation-link">

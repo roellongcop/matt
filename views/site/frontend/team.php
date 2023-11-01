@@ -9,28 +9,26 @@ use app\helpers\App;
       <h2 class="centered">Meet the Team</h2>
       <hr>
 	   <div class="col-lg-8 col-lg-offset-2 centered">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+        <p>Behind every great platform is a dedicated team. Get to know the passionate individuals who drive our mission forward:</p>
 		<br/>
       </div>
       <div class="col-lg-3 centered"> 
         <img class="img img-circle" src="<?= App::publishedUrl('/img/team/default.png', '@app/assets/frontend') ?>" height="120px" width="120px" alt="">
-        <h4><strong>Name #</strong></h4>
-        <p>Consectetuer eu nam. Saepe legendos vulputate eu quo, id mea comprehensam signifer.</p>
+        <h4><strong>John Williams</strong></h4>
+        <p>Lead Spiritual Advisor with over a decade of guiding communal prayers.</p>
         <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> </div>
       <div class="col-lg-3 centered"> <img class="img img-circle" src="<?= App::publishedUrl('/img/team/default.png', '@app/assets/frontend') ?>" height="120px" width="120px" alt="">
-        <h4><b>Name #</b></h4>
-        <p>Consectetuer eu nam. Saepe legendos vulputate eu quo, id mea comprehensam signifer.</p>
+        <h4><b>Sophia Martinez</b></h4>
+        <p>Digital Engagement Expert passionate about connecting believers worldwide.</p>
         <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> </div>
       <div class="col-lg-3 centered"> <img class="img img-circle" src="<?= App::publishedUrl('/img/team/default.png', '@app/assets/frontend') ?>" height="120px" width="120px" alt="">
-        <h4><b>Name #</b></h4>
-        <p>Consectetuer eu nam. Saepe legendos vulputate eu quo, id mea comprehensam signifer.</p>
+        <h4><b>Liam Thompson</b></h4>
+        <p>Content Curator with a keen eye for uplifting and enlightening materials.</p>
         <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> </div>
       <div class="col-lg-3 centered"> <img class="img img-circle" src="<?= App::publishedUrl('/img/team/default.png', '@app/assets/frontend') ?>" height="120px" width="120px" alt="">
-        <h4><b>Name #</b></h4>
-        <p>Consectetuer eu nam. Saepe legendos vulputate eu quo, id mea comprehensam signifer.</p>
+        <h4><b>Emily Clark</b></h4>
+        <p>Community Outreach Specialist dedicated to fostering strong bonds among members.</p>
         <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> </div>
-     
     </div>
   </div>
-  <!-- row --> 
 </div>

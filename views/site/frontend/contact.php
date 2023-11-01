@@ -7,7 +7,7 @@
     <div class="row">
       <div class="col-md-7 form-container">
         <strong>Please give us your feedback!</strong>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+        <p>Your insights matter to us! As we continuously strive to improve and evolve, your feedback provides invaluable guidance. Whether it's praise, suggestions, or areas for improvement, we genuinely want to hear from you. </p>
         <form id="contact" method="post" class="form" role="form">
           <div class="row">
             <div class="col-md-12 form-group">
