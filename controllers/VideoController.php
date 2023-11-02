@@ -130,4 +130,9 @@ class VideoController extends Controller
 
         return $this->redirect($model->indexUrl);
     }
+
+    public function actionClient()
+    {
+        return $this->render('client');
+    }
 }
