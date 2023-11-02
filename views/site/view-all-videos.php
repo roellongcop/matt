@@ -30,3 +30,4 @@ use yii\widgets\ListView;
     </div>
   </div>
 </div>
+<?= $this->render('frontend/footer') ?>
